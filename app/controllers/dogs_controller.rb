@@ -16,7 +16,7 @@ class DogsController < ApplicationController
   def create 
     dog = Dog.create(dog_params)
 
-    redirect_to dogs_path
+    redirect_to dogs_path(dog)
   end
 
   def edit
@@ -41,6 +41,10 @@ class DogsController < ApplicationController
 
   def dog_params
     params.require(:dog).permit(:name, :motto)
+  end
+
+  def current_dog
+    @dog = Dog.find(params[:id])
   end
 
 end
